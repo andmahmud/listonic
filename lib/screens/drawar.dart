@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:listonic/screens/home.dart';
 
 // ignore: camel_case_types
 class drawar extends StatelessWidget {
@@ -43,10 +44,12 @@ class drawar extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.list),
-            title: Text("My List"),
-            onTap: () => debugPrint("object"),
-          ),
+              leading: Icon(Icons.list),
+              title: Text("My List"),
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => MyHomePage()));
+              }),
           ListTile(
             leading: Icon(Icons.delete),
             title: Text("Trash"),
