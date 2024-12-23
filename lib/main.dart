@@ -20,6 +20,7 @@ class myapp extends StatelessWidget {
             "My Lists",
           ),
           backgroundColor: Colors.black,
+          foregroundColor: Colors.white,
         ),
         floatingActionButton: FloatingActionButton(
           elevation: 10,
