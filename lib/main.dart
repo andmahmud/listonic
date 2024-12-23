@@ -1,5 +1,5 @@
-import 'package:listonic/screens/drawar.dart';
 import 'package:flutter/material.dart';
+import 'package:listonic/screens/home.dart';
 
 void main() {
   runApp(myapp());
@@ -14,22 +14,7 @@ class myapp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        drawer: drawar(),
-        appBar: AppBar(
-          title: Text(
-            "My Lists",
-          ),
-          backgroundColor: Colors.black,
-          foregroundColor: Colors.white,
-        ),
-        floatingActionButton: FloatingActionButton(
-          elevation: 10,
-          child: Icon(Icons.add),
-          onPressed: () {},
-        ),
-        body: Center(
-          child: Text("Main page"),
-        ),
+        body: MyHomePage(),
       ),
     );
   }
