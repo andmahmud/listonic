@@ -25,13 +25,16 @@ class _MyHomePageState extends State<MyHomePage> {
       drawer: drawar(),
       appBar: AppBar(
         title: Text("My Lists"),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.teal,
         foregroundColor: Colors.white,
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         elevation: 10,
-        child: Text("Add New Taks"),
-        onPressed: () {},
+        label: Text("Add New Task"), // Text on the button
+        icon: Icon(Icons.add), // Icon next to the text
+        onPressed: () {
+          // Add your action here
+        },
       ),
       body: _pages[_currentIndex],
       bottomNavigationBar: BottomNavigationBar(
