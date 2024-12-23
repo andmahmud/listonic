@@ -5,6 +5,7 @@ class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
@@ -29,7 +30,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton(
         elevation: 10,
-        child: Icon(Icons.add),
+        child: Text("Add New Taks"),
         onPressed: () {},
       ),
       body: _pages[_currentIndex],
