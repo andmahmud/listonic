@@ -6,10 +6,10 @@ class DoneWorkList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Done Work"),
-        backgroundColor: Colors.teal,
-      ),
+      // appBar: AppBar(
+      //   title: Text("Done Work"),
+      //   backgroundColor: Colors.teal,
+      // ),
       body: DoneWorkListView(),
     );
   }
