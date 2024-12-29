@@ -10,7 +10,7 @@ class Profile extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: 
            Text(
-                  'Hello! 👋',
+                'Hello! 👋',
                   style: TextStyle(
                     fontSize: 28,
                     fontWeight: FontWeight.bold,
@@ -19,46 +19,35 @@ class Profile extends StatelessWidget {
       ),
       body: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-             
-                SizedBox(height: 10),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                    minimumSize: Size(double.infinity, 50),
-                    shape: RoundedRectangleBorder(
+           Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: Colors.green,
                       borderRadius: BorderRadius.circular(8),
                     ),
-                  ),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'LOG IN',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                        ),
+                    child: ListTile(
+                     
+                      title: Text('LOG IN',
+                      style: TextStyle(color: Colors.white,
+                       fontWeight: FontWeight.bold,),
                       ),
-                      Text(
-                        'Log in to share and sync lists',
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
+                      
+                      trailing: Container(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 12,
+                          vertical: 6,
                         ),
+                        decoration: BoxDecoration(
+                          color: Colors.green,
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      
                       ),
-                    ],
+                      onTap: () {},
+                    ),
                   ),
                 ),
-              ],
-            ),
-          ),
           Expanded(
             child: ListView(
               children: [
