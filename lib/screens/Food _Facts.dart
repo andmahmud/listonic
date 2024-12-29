@@ -22,7 +22,7 @@ class FoodFacts extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-             SizedBox(height: 16),
+            SizedBox(height: 16),
             TextField(
               decoration: InputDecoration(
                 prefixIcon: Icon(Icons.search),
@@ -79,12 +79,15 @@ class FoodFacts extends StatelessWidget {
               crossAxisSpacing: 16,
               mainAxisSpacing: 16,
               children: [
-                {'name': 'Ale beer', 'image': 'assets/images/ale_beer.png'},
-                {'name': 'Alfredo sauce', 'image': 'assets/images/alfredo_sauce.png'},
-                {'name': 'Allspice', 'image': 'assets/images/allspice.png'},
-                {'name': 'Almond milk', 'image': 'assets/images/almond_milk.png'},
-                {'name': 'Almonds', 'image': 'assets/images/almonds.png'},
-                {'name': 'American blueberries', 'image': 'assets/images/blueberries.png'},
+                {'name': 'Ale beer', 'image': 'assets/images/favicon.png'},
+                {'name': 'Alfredo sauce', 'image': 'assets/images/favicon.png'},
+                {'name': 'Allspice', 'image': 'assets/images/favicon.png'},
+                {'name': 'Almond milk', 'image': 'assets/images/favicon.png'},
+                {'name': 'Almonds', 'image': 'assets/images/favicon.png'},
+                {
+                  'name': 'American blueberries',
+                  'image': 'assets/images/favicon.png'
+                },
               ]
                   .map(
                     (item) => Column(
