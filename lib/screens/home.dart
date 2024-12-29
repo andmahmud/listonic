@@ -46,7 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
             label: "Profile",
           ),
         ],
-        selectedItemColor: Colors.black,
+        selectedItemColor: Colors.green,
         unselectedItemColor: Colors.grey,
       ),
     );
