@@ -8,16 +8,41 @@ class Mylist extends StatefulWidget {
 }
 
 class _MylistState extends State<Mylist> {
-  final List<Widget> _cards = []; // List to store the cards
+  final List<Map<String, String>> _cards = []; // List to store card data
   final TextEditingController _titleController = TextEditingController();
+  final TextEditingController _renameController = TextEditingController();
 
+  void _showAppBarMenu(int value) {
+    // Handle app bar menu actions here
+    if (value == 1) {
+      // Show trash or other actions
+      print('Trash clicked');
+    }
+  }
+
+  // Add a new card to the list
   void _addNewCard(String title) {
     setState(() {
-      _cards.add(_buildCard(title));
+      _cards.add({'title': title}); // Add a new card with title
     });
   }
 
-  Widget _buildCard(String title) {
+  // Remove card by index
+  void _removeCard(int index) {
+    setState(() {
+      _cards.removeAt(index); // Remove card by index
+    });
+  }
+
+  // Rename card title
+  void _renameCard(int index, String newTitle) {
+    setState(() {
+      _cards[index]['title'] = newTitle; // Rename card title
+    });
+  }
+
+  // Build the card widget for display
+  Widget _buildCard(int index) {
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10),
@@ -31,7 +56,7 @@ class _MylistState extends State<Mylist> {
               contentPadding:
                   const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
               title: Text(
-                title,
+                _cards[index]['title'] ?? '',
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
@@ -74,14 +99,16 @@ class _MylistState extends State<Mylist> {
                 // Handle card menu actions here
                 if (value == 1) {
                   // Manage List action
+                  _showManageListDialog(index);
                 } else if (value == 2) {
                   // Rename action
+                  _showRenameDialog(index);
                 } else if (value == 3) {
                   // Share action
-                } else if (value == 4) {
-                  // Copy action
+                  _showShareDialog(index);
                 } else if (value == 5) {
-                  // Trash action
+                  // Trash action (remove card)
+                  _removeCard(index); // Remove card when Trash is selected
                 }
               },
               itemBuilder: (context) => [
@@ -116,16 +143,6 @@ class _MylistState extends State<Mylist> {
                   ),
                 ),
                 const PopupMenuItem(
-                  value: 4,
-                  child: Row(
-                    children: [
-                      Icon(Icons.copy, color: Colors.grey),
-                      SizedBox(width: 10),
-                      Text("Copy"),
-                    ],
-                  ),
-                ),
-                const PopupMenuItem(
                   value: 5,
                   child: Row(
                     children: [
@@ -146,6 +163,84 @@ class _MylistState extends State<Mylist> {
     );
   }
 
+  // Show dialog for renaming a card
+  void _showRenameDialog(int index) {
+    _renameController.text = _cards[index]['title'] ?? '';
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Rename List'),
+          content: TextField(
+            controller: _renameController,
+            decoration: const InputDecoration(hintText: 'Enter new title'),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                final newTitle = _renameController.text.trim();
+                if (newTitle.isNotEmpty) {
+                  _renameCard(index, newTitle);
+                }
+                Navigator.pop(context);
+              },
+              child: const Text('Rename'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Show dialog for sharing a card
+  void _showShareDialog(int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Share List'),
+          content: Text('Share the list: ${_cards[index]['title']}'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Show dialog to manage list (customize as per your needs)
+  void _showManageListDialog(int index) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: const Text('Manage List'),
+          content: Text('Manage list: ${_cards[index]['title']}'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Close'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  // Show modal bottom sheet to add new card
   void _showAddCardDialog() {
     showModalBottomSheet(
       context: context,
@@ -181,18 +276,6 @@ class _MylistState extends State<Mylist> {
                 ),
               ),
               const SizedBox(height: 16),
-              Wrap(
-                spacing: 8,
-                children: [
-                  _buildSuggestionChip("Walmart"),
-                  _buildSuggestionChip("Target"),
-                  _buildSuggestionChip("Dollar General"),
-                  _buildSuggestionChip("Shopping"),
-                  _buildSuggestionChip("Groceries"),
-                  _buildSuggestionChip("12/30/24"),
-                ],
-              ),
-              const SizedBox(height: 16),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -222,23 +305,6 @@ class _MylistState extends State<Mylist> {
     );
   }
 
-  Widget _buildSuggestionChip(String label) {
-    return ChoiceChip(
-      label: Text(label),
-      selected: false,
-      onSelected: (selected) {
-        _titleController.text = label;
-      },
-    );
-  }
-
-  void _showAppBarMenu(int value) {
-    // Handle AppBar menu actions
-    if (value == 1) {
-      // Trash action
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -265,17 +331,11 @@ class _MylistState extends State<Mylist> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Expanded(
-              child: ListView.builder(
-                itemCount: _cards.length,
-                itemBuilder: (context, index) {
-                  return _cards[index];
-                },
-              ),
-            ),
-          ],
+        child: ListView.builder(
+          itemCount: _cards.length,
+          itemBuilder: (context, index) {
+            return _buildCard(index);
+          },
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
