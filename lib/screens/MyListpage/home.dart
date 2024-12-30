@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:listonic/screens/Food%20_Facts.dart';
-import 'package:listonic/screens/MyList.dart';
+import 'package:listonic/screens/MyListpage/MyList.dart';
 import 'package:listonic/screens/Profile.dart';
 
 class MyHomePage extends StatefulWidget {

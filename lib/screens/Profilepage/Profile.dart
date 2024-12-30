@@ -143,7 +143,27 @@ class Profile extends StatelessWidget {
                 ListTile(
                   leading: const Icon(Icons.favorite, color: Colors.red),
                   title: const Text('Enjoying the app?'),
-                  subtitle: const Text('Rate us ★★★★★ on Google Play'),
+                  subtitle: RichText(
+                    text: TextSpan(
+                      children: [
+                        TextSpan(
+                          text: 'Rate us ',
+                          style: DefaultTextStyle.of(context).style,
+                        ),
+                        TextSpan(
+                          text: '★★★★★',
+                          style: TextStyle(
+                            color: Colors.amber, // Gold color for stars
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextSpan(
+                          text: ' on Google Play',
+                          style: DefaultTextStyle.of(context).style,
+                        ),
+                      ],
+                    ),
+                  ),
                   onTap: () {
                     // TODO: Implement Rating Functionality
                   },
