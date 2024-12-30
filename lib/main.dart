@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:listonic/screens/home.dart';
+import 'package:listonic/screens/MyListpage/home.dart';
 
 void main() {
   runApp(myapp());
@@ -14,7 +14,7 @@ class myapp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        body: MyHomePage(),
+        body: HomePage(),
       ),
     );
   }

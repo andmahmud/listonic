@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 
-import 'package:listonic/screens/Food%20_Facts.dart';
+import 'package:listonic/screens/Food_facts_page/Food%20_Facts.dart';
 import 'package:listonic/screens/MyListpage/MyList.dart';
-import 'package:listonic/screens/Profile.dart';
+import 'package:listonic/screens/Profilepage/Profile.dart';
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<HomePage> {
   int _currentIndex = 0;
 
   final List<Widget> _pages = [
